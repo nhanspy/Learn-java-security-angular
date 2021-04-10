@@ -1,6 +1,7 @@
 package com.learnsecurity.models;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +34,13 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    private String ten;
+    private String soDienThoai;
+    @Temporal(TemporalType.DATE)
+    private Date ngaySinh;
+    private String diaChi;
+    private boolean gioiTinh;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -40,6 +48,47 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
+    }
+
+    public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String ten, String soDienThoai) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.ten = ten;
+        this.soDienThoai = soDienThoai;
+    }
+
+    public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String ten, String soDienThoai, String diaChi) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.ten = ten;
+        this.soDienThoai = soDienThoai;
+        this.diaChi = diaChi;
+    }
+
+    public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String ten, String soDienThoai, Date ngaySinh, String diaChi, boolean gioiTinh) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.ten = ten;
+        this.soDienThoai = soDienThoai;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
+    }
+
+    public User(Long id, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String ten, String soDienThoai, Date ngaySinh, String diaChi, boolean gioiTinh, Set<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.ten = ten;
+        this.soDienThoai = soDienThoai;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
+        this.roles = roles;
     }
 
     public User(String username, String email, String password) {
@@ -86,5 +135,45 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public boolean isGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 }
